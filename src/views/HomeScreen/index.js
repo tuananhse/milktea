@@ -10,7 +10,9 @@ import ProductList from '../../components/ProductList';
 import DeliveryGroup from '../../components/DeliveryGroup';
 import ProductListHistory from '../../components/ProductListHistory';
 import Slider from '../../components/Slider';
+import {useNavigation} from '@react-navigation/native';
 const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <Container>
       <ScrollView style={commonStyle.flex}>
@@ -20,7 +22,7 @@ const HomeScreen = () => {
               Nguyễn Tuấn Anh ơi, Milk tea đi
             </Text>
             <HStack space={2} alignItems={'flex-start'}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Voucher')}>
                 <View style={commonStyle.circleWhite}>
                   <Icon name="bookmark-outline" size={24} />
                 </View>
@@ -50,8 +52,8 @@ const HomeScreen = () => {
             <DeliveryGroup />
             <Slider />
             <ProductListHistory />
-            {/* <ProductList />
-            <NewsList /> */}
+            <ProductList />
+            <NewsList />
           </VStack>
         </VStack>
       </ScrollView>

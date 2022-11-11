@@ -9,6 +9,7 @@ import {
   PRIMARY_LIGHT,
   SECONDARY,
   TEXT_BORDER,
+  TEXT_PLACEHOLDER,
   TRANSPARENT,
   WHITE,
 } from './colors';
@@ -62,6 +63,14 @@ export default {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  circleMediumWhite: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: GRAY_LIGHT,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   btnAccumulatePoints: {
     padding: 10,
     borderRadius: 10,
@@ -99,5 +108,40 @@ export default {
   iconSmall: {
     width: 20,
     height: 20,
+  },
+  btnClose: {
+    zIndex: 10,
+    position: 'absolute',
+    right: 0,
+    padding: 30,
+  },
+  iconCircleBg: {
+    backgroundColor: GRAY_LIGHT,
+    padding: 6,
+    borderRadius: 10,
+  },
+  bgClose: {
+    backgroundColor: TRANSPARENT,
+    justifyContent: 'center',
+  },
+  tag: {
+    padding: 10,
+    borderRadius: 20,
+  },
+  tagActive: {
+    backgroundColor: PRIMARY_LIGHT,
+    padding: 10,
+    borderRadius: 20,
+  },
+  btnCoupon: {
+    backgroundColor: GRAY_LIGHT,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    padding: 10,
+    height: 60,
+  },
+  icMedium: {
+    width: 40,
+    height: 40,
   },
 };

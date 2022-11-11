@@ -17,45 +17,8 @@ import React from 'react';
 import {TouchableOpacity, Image} from 'react-native';
 import {keyExtractor} from '../../utils';
 
-const data = [
-  {
-    id: 1,
-    name: 'Trà đào cam sả - Đá',
-    price: '55.000đ',
-    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
-  },
-  {
-    id: 2,
-    name: 'Trà đào cam sả - Đá',
-    price: '55.000đ',
-    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
-  },
-  {
-    id: 2,
-    name: 'Trà đào cam sả - Đá',
-    price: '55.000đ',
-    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
-  },
-  {
-    id: 1,
-    name: 'Trà đào cam sả - Đá',
-    price: '55.000đ',
-    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
-  },
-  {
-    id: 2,
-    name: 'Trà đào cam sả - Đá',
-    price: '55.000đ',
-    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
-  },
-  {
-    id: 2,
-    name: 'Trà đào cam sả - Đá',
-    price: '55.000đ',
-    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
-  },
-];
-const ProductCategoryList = () => {
+const ProductCategoryList = props => {
+  const {list} = props;
   const navigation = useNavigation();
   const onPressSelect = val => {
     navigation.navigate('ProductDetail');
@@ -90,7 +53,7 @@ const ProductCategoryList = () => {
                 </Stack>
 
                 <VStack mt={2}>
-                  <Button bg={'primary.100'}>
+                  <Button bg={'primary.100'} w={'24'}>
                     <Text fontWeight={'bold'} color={'text.0'}>
                       Chọn
                     </Text>
@@ -108,7 +71,7 @@ const ProductCategoryList = () => {
       <FlatList
         renderItem={renderItem}
         key="brand-product"
-        data={data}
+        data={list}
         keyExtractor={keyExtractor}
         horizontal={false}
         numColumns={1}

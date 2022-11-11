@@ -61,7 +61,6 @@ const VerifyCodeScreen = () => {
             <VStack space={6} mt={4}>
               <Input
                 onChangeText={val => {
-                  console.log('setPhone(val)', val);
                   setPhone(val);
                 }}
                 keyboardType="number-pad"

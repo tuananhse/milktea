@@ -6,7 +6,8 @@ import commonStyle from '../styles/commonStyle';
 // import Barcode from 'react-native-barcode-builder';
 import Barcode from '@kichiyaki/react-native-barcode-generator';
 
-const MemberCard = () => {
+const MemberCard = props => {
+  const {enablePoint = false} = props;
   return (
     <Box
       mt={4}
@@ -26,11 +27,13 @@ const MemberCard = () => {
           <Text pt={'6'} fontWeight={'bold'} color={'text.0'}>
             Nguyễn Tuấn Anh
           </Text>
-          <TouchableOpacity style={commonStyle.btnAccumulatePoints}>
-            <Text fontWeight={'semibold'} color={'text.0'}>
-              Tích điểm
-            </Text>
-          </TouchableOpacity>
+          {!enablePoint && (
+            <TouchableOpacity style={commonStyle.btnAccumulatePoints}>
+              <Text fontWeight={'semibold'} color={'text.0'}>
+                Tích điểm
+              </Text>
+            </TouchableOpacity>
+          )}
         </HStack>
         <Text fontWeight={'bold'} color={'text.0'}>
           100 POINT · Vàng

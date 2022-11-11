@@ -54,7 +54,7 @@ const data = [
     img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
   },
 ];
-const ProductList = () => {
+const ProductList = props => {
   const navigation = useNavigation();
   const onPressSelect = () => {
     navigation.navigate('ProductDetail');

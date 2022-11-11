@@ -14,6 +14,11 @@ import ProductDetail from '../views/Product';
 import Order from '../views/Order';
 import OrderConfirm from '../views/Order/OrderConfirm';
 import History from '../views/History';
+import ListStore from '../views/Store';
+import StoreDetail from '../views/Store/detail';
+import Voucher from '../views/Voucher';
+import VoucherDetail from '../views/Voucher/detail';
+import Coupon from '../views/Coupon';
 import {GRAY_DARK, GRAY_LIGHT, PRIMARY, PRIMARY_LIGHT} from '../styles/colors';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,11 +47,32 @@ function Main() {
         options={{
           tabBarLabel: 'Đặt hàng',
           tabBarIcon: ({color, size}) => (
-            <Icon name="envelope" color={color} size={size} />
+            <Icon name="truck" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
+        name="Store"
+        component={ListStore}
+        options={{
+          tabBarLabel: 'Cửa hàng',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="map-marker" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Coupon"
+        component={Coupon}
+        options={{
+          tabBarLabel: 'Ưu đãi',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="ticket" color={color} size={size} />
+          ),
+        }}
+      />
+
+      {/* <Tab.Screen
         name="Profile"
         component={History}
         options={{
@@ -55,7 +81,7 @@ function Main() {
             <Icon name="history" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Setting"
         component={FilterCategoryScreen}
@@ -106,6 +132,24 @@ export default function RouterContainer() {
         <Stack.Screen
           name="OrderConfirm"
           component={OrderConfirm}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="StoreDetail"
+          component={StoreDetail}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="Voucher"
+          component={Voucher}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="VoucherDetail"
+          component={VoucherDetail}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
