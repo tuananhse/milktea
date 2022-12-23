@@ -24,8 +24,19 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import MemberCard from '../../components/MemberCard';
 import {PRIMARY, PRIMARY_LIGHT} from '../../styles/colors';
 import {IMG} from '../../styles/images';
+import {useNavigation} from '@react-navigation/native';
 
 const Coupon = () => {
+  const navigation = useNavigation();
+  const onPressChangeVoucher = () => {};
+
+  const onPressMyVoucher = () => {};
+
+  const onPressHistoryPoint = () => {};
+
+  const onPressMyPolicy = () => {
+    navigation.navigate('MyPolicy');
+  };
   return (
     <Container>
       <ScrollView>
@@ -86,40 +97,60 @@ const Coupon = () => {
             <VStack space={3} mt={4}>
               <HStack space={3} justifyContent="center">
                 <Center h="24" w="50%" bg="text.200" rounded="md" shadow={3}>
-                  <TouchableOpacity>
-                    <Image
-                      source={IMG.coupon}
-                      resizeMode="contain"
-                      style={commonStyle.icMedium}
-                    />
-                    <Text fontWeight={'semibold'}>Đổi ưu đãi</Text>
+                  <TouchableOpacity onPress={() => onPressChangeVoucher()}>
+                    <VStack flex alignItems={'center'} justifyContent="center">
+                      <Image
+                        source={IMG.coupon}
+                        resizeMode="contain"
+                        style={commonStyle.icMedium}
+                      />
+                      <Text fontWeight={'semibold'}>Đổi ưu đãi</Text>
+                    </VStack>
                   </TouchableOpacity>
                 </Center>
                 <Center h="24" w="50%" bg="text.200" rounded="md" shadow={3}>
-                  <Image
-                    source={IMG.giftbox}
-                    resizeMode="contain"
-                    style={commonStyle.icMedium}
-                  />
-                  <Text fontWeight={'semibold'}>Voucher của bạn</Text>
+                  <TouchableOpacity onPress={() => onPressMyVoucher()}>
+                    <VStack flex alignItems={'center'} justifyContent="center">
+                      <Image
+                        source={IMG.giftbox}
+                        resizeMode="contain"
+                        style={commonStyle.icMedium}
+                      />
+                      <Text fontWeight={'semibold'}>Voucher của bạn</Text>
+                    </VStack>
+                  </TouchableOpacity>
                 </Center>
               </HStack>
               <HStack space={3} justifyContent="center">
-                <Center h="24" w="50%" bg="text.200" rounded="md" shadow={3}>
-                  <Image
-                    source={IMG.history}
-                    resizeMode="contain"
-                    style={commonStyle.icMedium}
-                  />
-                  <Text fontWeight={'semibold'}>Lịch sử POINT</Text>
+                <Center
+                  flex
+                  h="24"
+                  w="50%"
+                  bg="text.200"
+                  rounded="md"
+                  shadow={3}>
+                  <TouchableOpacity onPress={() => onPressHistoryPoint()}>
+                    <VStack flex alignItems={'center'} justifyContent="center">
+                      <Image
+                        source={IMG.history}
+                        resizeMode="contain"
+                        style={commonStyle.icMedium}
+                      />
+                      <Text fontWeight={'semibold'}>Lịch sử POINT</Text>
+                    </VStack>
+                  </TouchableOpacity>
                 </Center>
                 <Center h="24" w="50%" bg="text.200" rounded="md" shadow={3}>
-                  <Image
-                    source={IMG.encrypted}
-                    resizeMode="contain"
-                    style={commonStyle.icMedium}
-                  />
-                  <Text fontWeight={'semibold'}>Quyền lợi của bạn</Text>
+                  <TouchableOpacity onPress={() => onPressMyPolicy()}>
+                    <VStack flex alignItems={'center'} justifyContent="center">
+                      <Image
+                        source={IMG.encrypted}
+                        resizeMode="contain"
+                        style={commonStyle.icMedium}
+                      />
+                      <Text fontWeight={'semibold'}>Quyền lợi của bạn</Text>
+                    </VStack>
+                  </TouchableOpacity>
                 </Center>
               </HStack>
             </VStack>

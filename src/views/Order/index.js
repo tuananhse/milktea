@@ -23,6 +23,11 @@ const Order = () => {
   const onPressOrder = () => {
     navigation.navigate('OrderConfirm');
   };
+
+  const goToCoupon = () => {
+    navigation.navigate('AddPromoCode');
+  };
+
   return (
     <Container>
       <HStack alignItems={'center'} justifyContent={'space-between'} p={4}>
@@ -107,16 +112,20 @@ const Order = () => {
                       <Text color={'text.100'}>35.000đ</Text>
                     </VStack>
                   </HStack>
-                  <HStack alignItems={'center'} mb={4}>
-                    <View flex={1}>
-                      <Text color={'primary.100'} fontWeight={'semibold'}>
-                        Mã khuyến mãi
-                      </Text>
-                    </View>
-                    <View flex={1}>
-                      <Input placeholder="Nhập mã khuyến mãi" />
-                    </View>
-                  </HStack>
+                  <VStack bg={'text.0'} mb={4}>
+                    <TouchableOpacity onPress={() => goToCoupon()}>
+                      <HStack justifyContent={'space-between'}>
+                        <VStack>
+                          <Text color={'primary.100'} fontWeight={'semibold'}>
+                            Mã khuyến mãi
+                          </Text>
+                        </VStack>
+                        <VStack>
+                          <Icon name="chevron-forward-outline" size={18} />
+                        </VStack>
+                      </HStack>
+                    </TouchableOpacity>
+                  </VStack>
                   <HStack space={2} justifyContent={'space-between'}>
                     <VStack>
                       <Text color={'text.100'} fontWeight={'semibold'}>

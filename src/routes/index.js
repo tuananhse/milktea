@@ -19,7 +19,10 @@ import StoreDetail from '../views/Store/detail';
 import Voucher from '../views/Voucher';
 import VoucherDetail from '../views/Voucher/detail';
 import Coupon from '../views/Coupon';
+import AddPromoCode from '../views/Coupon/AddPromoCode';
 import {GRAY_DARK, GRAY_LIGHT, PRIMARY, PRIMARY_LIGHT} from '../styles/colors';
+import PromoDetail from '../views/Coupon/PromoDetail';
+import MyPolicy from '../views/ProfileScreen/policy';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function Main() {
@@ -72,16 +75,6 @@ function Main() {
         }}
       />
 
-      {/* <Tab.Screen
-        name="Profile"
-        component={History}
-        options={{
-          tabBarLabel: 'Lịch sử',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="history" color={color} size={size} />
-          ),
-        }}
-      /> */}
       <Tab.Screen
         name="Setting"
         component={FilterCategoryScreen}
@@ -150,6 +143,21 @@ export default function RouterContainer() {
         <Stack.Screen
           name="VoucherDetail"
           component={VoucherDetail}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AddPromoCode"
+          component={AddPromoCode}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="PromoDetail"
+          component={PromoDetail}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MyPolicy"
+          component={MyPolicy}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
