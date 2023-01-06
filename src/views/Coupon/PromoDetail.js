@@ -34,14 +34,14 @@ const PromoDetail = route => {
   const navigation = useNavigation();
   return (
     <Container bg={'green'}>
-      <ScrollView bg={'gray.100'} flex>
+      <ScrollView bg={'gray.100'} flex={1}>
         <VStack>
           <HStack justifyContent={'flex-end'} pr={4} pt={4}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons name="close" size={24} />
             </TouchableOpacity>
           </HStack>
-          <VStack flex>
+          <VStack flex={1}>
             <Box m={4} pb={10} bg={'text.0'} borderRadius={10} p={4}>
               <VStack space={4} alignItems={'center'}>
                 <Text>Brand Name</Text>

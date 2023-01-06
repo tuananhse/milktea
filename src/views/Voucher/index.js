@@ -49,7 +49,7 @@ const Voucher = () => {
         </VStack>
         <HStack />
       </HStack>
-      <VStack flex p={4} pt={0}>
+      <VStack flex={1} p={4} pt={0}>
         <HStack>
           <Input
             onChangeText={onChangeSearchText}
@@ -64,7 +64,7 @@ const Voucher = () => {
             value={searchText}
             focusable={true}
             size={'lg'}
-            flex
+            flex={1}
             InputLeftElement={
               <View pl={4}>
                 <Icon size={20} name="barcode-outline" />

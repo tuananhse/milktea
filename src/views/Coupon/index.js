@@ -40,7 +40,7 @@ const Coupon = () => {
   return (
     <Container>
       <ScrollView>
-        <VStack flex p={4} style={commonStyle.flex}>
+        <VStack flex={1} p={4} style={commonStyle.flex}>
           <HStack alignItems={'center'} justifyContent={'space-between'}>
             <Heading color={'text.100'}>Ưu đãi</Heading>
             <HStack space={2} alignItems={'flex-start'}>
@@ -98,7 +98,10 @@ const Coupon = () => {
               <HStack space={3} justifyContent="center">
                 <Center h="24" w="50%" bg="text.200" rounded="md" shadow={3}>
                   <TouchableOpacity onPress={() => onPressChangeVoucher()}>
-                    <VStack flex alignItems={'center'} justifyContent="center">
+                    <VStack
+                      flex={1}
+                      alignItems={'center'}
+                      justifyContent="center">
                       <Image
                         source={IMG.coupon}
                         resizeMode="contain"
@@ -110,7 +113,10 @@ const Coupon = () => {
                 </Center>
                 <Center h="24" w="50%" bg="text.200" rounded="md" shadow={3}>
                   <TouchableOpacity onPress={() => onPressMyVoucher()}>
-                    <VStack flex alignItems={'center'} justifyContent="center">
+                    <VStack
+                      flex={1}
+                      alignItems={'center'}
+                      justifyContent="center">
                       <Image
                         source={IMG.giftbox}
                         resizeMode="contain"
@@ -123,14 +129,17 @@ const Coupon = () => {
               </HStack>
               <HStack space={3} justifyContent="center">
                 <Center
-                  flex
+                  flex={1}
                   h="24"
                   w="50%"
                   bg="text.200"
                   rounded="md"
                   shadow={3}>
                   <TouchableOpacity onPress={() => onPressHistoryPoint()}>
-                    <VStack flex alignItems={'center'} justifyContent="center">
+                    <VStack
+                      flex={1}
+                      alignItems={'center'}
+                      justifyContent="center">
                       <Image
                         source={IMG.history}
                         resizeMode="contain"
@@ -142,7 +151,10 @@ const Coupon = () => {
                 </Center>
                 <Center h="24" w="50%" bg="text.200" rounded="md" shadow={3}>
                   <TouchableOpacity onPress={() => onPressMyPolicy()}>
-                    <VStack flex alignItems={'center'} justifyContent="center">
+                    <VStack
+                      flex={1}
+                      alignItems={'center'}
+                      justifyContent="center">
                       <Image
                         source={IMG.encrypted}
                         resizeMode="contain"

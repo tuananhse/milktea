@@ -16,7 +16,7 @@ const VoucherDetail = props => {
   };
   return (
     <Container>
-      <VStack bg={'text.200'} flex>
+      <VStack bg={'text.200'} flex={1}>
         <VStack
           justifyContent={'flex-end'}
           alignItems={'flex-end'}

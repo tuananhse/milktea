@@ -40,7 +40,7 @@ const StoreDetail = props => {
   };
   return (
     <Container edges="bottom">
-      <VStack flex>
+      <VStack flex={1}>
         <VStack flex={9}>
           <ScrollView>
             <VStack>
@@ -76,7 +76,7 @@ const StoreDetail = props => {
                   <View style={commonStyle.iconCircleBg}>
                     <Icon name="home" size={24} />
                   </View>
-                  <View flex>
+                  <View flex={1}>
                     <Text color={'text.500'} fontSize={'md'}>
                       {item?.address}
                     </Text>
@@ -86,7 +86,7 @@ const StoreDetail = props => {
                   <View style={commonStyle.iconCircleBg}>
                     <Icon name="heart-outline" size={24} />
                   </View>
-                  <View flex>
+                  <View flex={1}>
                     <Text color={'text.500'} fontSize={'md'}>
                       Thêm vào danh sách yêu thích
                     </Text>
@@ -96,7 +96,7 @@ const StoreDetail = props => {
                   <View style={commonStyle.iconCircleBg}>
                     <Icon name="call-outline" size={24} />
                   </View>
-                  <View flex>
+                  <View flex={1}>
                     <Text color={'text.500'} fontSize={'md'}>
                       Liên Hệ
                     </Text>

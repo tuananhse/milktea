@@ -23,6 +23,7 @@ import AddPromoCode from '../views/Coupon/AddPromoCode';
 import {GRAY_DARK, GRAY_LIGHT, PRIMARY, PRIMARY_LIGHT} from '../styles/colors';
 import PromoDetail from '../views/Coupon/PromoDetail';
 import MyPolicy from '../views/ProfileScreen/policy';
+import MethodPayment from '../views/Order/MethodPayment';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function Main() {
@@ -158,6 +159,16 @@ export default function RouterContainer() {
         <Stack.Screen
           name="MyPolicy"
           component={MyPolicy}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MethodPayment"
+          component={MethodPayment}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Category"
+          component={FilterCategoryScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

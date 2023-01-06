@@ -80,7 +80,7 @@ const renderItem = ({item, index}) => {
                 alt="image"
               />
             </Box>
-            <HStack justifyContent={'space-between'} flex>
+            <HStack justifyContent={'space-between'} flex={1}>
               <Stack space={2}>
                 <Heading size="xs" numberOfLines={2} color={'text.100'}>
                   {item?.name}

@@ -23,7 +23,7 @@ const Container = ({
   if (touchableWithoutFeedback) {
     return (
       <SafeAreaView
-        edges={edges}
+        edges={[edges]}
         style={[commonStyle.containerSafeAreaView, {backgroundColor: WHITE}]}>
         <StatusBar barStyle={'dark-content'} backgroundColor={WHITE} />
         <TouchableWithoutFeedback

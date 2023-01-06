@@ -10,7 +10,7 @@ import {
   Input,
   Button,
 } from 'native-base';
-import React from 'react';
+import React, {useState} from 'react';
 import Container from '../../components/Container';
 import {Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -20,12 +20,23 @@ import {useNavigation} from '@react-navigation/native';
 
 const Order = () => {
   const navigation = useNavigation();
+  const [menthodPayment, setMenthodPayment] = useState();
   const onPressOrder = () => {
     navigation.navigate('OrderConfirm');
   };
 
+  console.log('OrderOrder', navigation.get);
+
   const goToCoupon = () => {
     navigation.navigate('AddPromoCode');
+  };
+
+  const onPressSelectPayment = () => {
+    navigation.navigate('MethodPayment', {
+      onReturn: item => {
+        setMenthodPayment(item);
+      },
+    });
   };
 
   return (
@@ -141,11 +152,18 @@ const Order = () => {
                   <Text color="text.100" fontWeight={'semibold'} mb={4}>
                     Phương thức thanh toán
                   </Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => onPressSelectPayment()}>
                     <HStack justifyContent={'space-between'}>
-                      <Text color={'primary.100'} fontWeight={'semibold'}>
-                        Chọn phương thức thanh toán
-                      </Text>
+                      {menthodPayment ? (
+                        <Text color={'primary.100'} fontWeight={'semibold'}>
+                          {menthodPayment}
+                        </Text>
+                      ) : (
+                        <Text color={'primary.100'} fontWeight={'semibold'}>
+                          Chọn phương thức thanh toán
+                        </Text>
+                      )}
+
                       <Icon name="chevron-forward-outline" size={18} />
                     </HStack>
                   </TouchableOpacity>

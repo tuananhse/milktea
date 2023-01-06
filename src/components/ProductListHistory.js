@@ -79,7 +79,7 @@ const ProductListHistory = () => {
 
   const renderItem = ({item, index}) => {
     return (
-      <HStack space={4} flex m={2} justifyContent={'space-between'}>
+      <HStack space={4} flex={1} m={2} justifyContent={'space-between'}>
         <HStack space={4}>
           <Image
             style={commonStyle.iconCircle}

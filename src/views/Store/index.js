@@ -112,7 +112,7 @@ const ListStore = () => {
   };
   return (
     <Container>
-      <VStack flex p={4} style={commonStyle.flex}>
+      <VStack flex={1} p={4} style={commonStyle.flex}>
         <HStack alignItems={'center'} justifyContent={'space-between'}>
           <Heading color={'text.100'}>Danh sách cửa hàng</Heading>
           <HStack space={2} alignItems={'flex-start'}>
@@ -141,7 +141,7 @@ const ListStore = () => {
             </TouchableOpacity>
           </HStack>
         </HStack>
-        <VStack space={2} flex>
+        <VStack space={2} flex={1}>
           <HStack
             space={2}
             mt={4}
@@ -170,7 +170,7 @@ const ListStore = () => {
             <TouchableOpacity>
               <HStack
                 space={2}
-                flex
+                flex={1}
                 justifyContent={'center'}
                 alignItems={'center'}>
                 <Icon size={20} name="map-outline" />
@@ -178,7 +178,7 @@ const ListStore = () => {
               </HStack>
             </TouchableOpacity>
           </HStack>
-          <VStack flex>
+          <VStack flex={1}>
             <Text fontWeight={'semibold'} fontSize="lg">
               Các cửa hàng khác
             </Text>

@@ -86,7 +86,7 @@ const AddPromoCode = () => {
   return (
     <Container>
       <ScrollView>
-        <VStack flex p={4} style={commonStyle.flex}>
+        <VStack flex={1} p={4} style={commonStyle.flex}>
           <HStack alignItems={'center'} justifyContent={'space-between'}>
             <Heading color={'text.100'}>Nhập mã ưu đãi</Heading>
             <HStack space={2} alignItems={'flex-start'}>
