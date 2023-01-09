@@ -24,6 +24,8 @@ import {GRAY_DARK, GRAY_LIGHT, PRIMARY, PRIMARY_LIGHT} from '../styles/colors';
 import PromoDetail from '../views/Coupon/PromoDetail';
 import MyPolicy from '../views/ProfileScreen/policy';
 import MethodPayment from '../views/Order/MethodPayment';
+import Address from '../views/ProfileScreen/address';
+import NewAddress from '../views/ProfileScreen/newAddress';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function Main() {
@@ -169,6 +171,16 @@ export default function RouterContainer() {
         <Stack.Screen
           name="Category"
           component={FilterCategoryScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Address"
+          component={Address}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="NewAddress"
+          component={NewAddress}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

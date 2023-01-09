@@ -30,11 +30,6 @@ const MethodPayment = ({route}) => {
 
   const onChangeMenthod = nextValue => {
     setValue(nextValue);
-    // navigation.state.params.updateData(nextValue);
-
-    // const {routeName, key} = navigation.getParam('returnToRoute');
-    // navigation.goBack({routeName, key, params: nextValue});
-
     route.params.onReturn(nextValue);
     navigation.goBack();
   };
