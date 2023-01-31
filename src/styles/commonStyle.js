@@ -115,6 +115,14 @@ export default {
     right: 0,
     padding: 30,
   },
+  icClose: {
+    zIndex: 10,
+    top: 0,
+    right: 0,
+    position: 'absolute',
+    padding: 20,
+    paddingTop: 40,
+  },
   iconCircleBg: {
     backgroundColor: GRAY_LIGHT,
     padding: 6,
@@ -143,5 +151,9 @@ export default {
   icMedium: {
     width: 40,
     height: 40,
+  },
+  icPromo: {
+    width: 80,
+    height: 80,
   },
 };

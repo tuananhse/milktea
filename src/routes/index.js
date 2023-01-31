@@ -26,6 +26,9 @@ import MyPolicy from '../views/ProfileScreen/policy';
 import MethodPayment from '../views/Order/MethodPayment';
 import Address from '../views/ProfileScreen/address';
 import NewAddress from '../views/ProfileScreen/newAddress';
+import RedeemPromo from '../views/Coupon/RedeemPromo';
+import AllPromo from '../views/Coupon/AllPromo';
+import MyVoucher from '../views/Voucher/myVoucher';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function Main() {
@@ -94,7 +97,7 @@ function Main() {
 export default function RouterContainer() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Coupon">
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -181,6 +184,21 @@ export default function RouterContainer() {
         <Stack.Screen
           name="NewAddress"
           component={NewAddress}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="RedeemPromo"
+          component={RedeemPromo}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AllPromo"
+          component={AllPromo}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MyVoucher"
+          component={MyVoucher}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

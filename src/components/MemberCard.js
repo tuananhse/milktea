@@ -3,7 +3,6 @@ import React from 'react';
 import {Dimensions, TouchableOpacity} from 'react-native';
 import {GRAY_DARK} from '../styles/colors';
 import commonStyle from '../styles/commonStyle';
-// import Barcode from 'react-native-barcode-builder';
 import Barcode from '@kichiyaki/react-native-barcode-generator';
 
 const MemberCard = props => {

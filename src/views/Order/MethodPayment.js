@@ -71,31 +71,33 @@ const MethodPayment = ({route}) => {
                       }}
                       style={commonStyle.iconSmall}
                     />
-                    <Text fontSize={16}>Tiền mặt</Text>
+                    <Text fontSize={16}>Tiền mặt (Cash)</Text>
                   </HStack>
                 </Radio>
-                <Radio value="Momo" my="1">
+                <Radio value="Paypal" my="1">
                   <HStack space={2} alignItems={'center'}>
                     <Image
                       alt="img"
                       source={{
-                        uri: 'https://file.hstatic.net/1000273026/article/momo_logo_ee7f0396e57f4820a504f7ab63e9eade_1024x1024.png',
+                        uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png',
                       }}
                       style={commonStyle.iconSmall}
+                      resizeMode="contain"
                     />
-                    <Text fontSize={16}>Momo</Text>
+                    <Text fontSize={16}>Paypal</Text>
                   </HStack>
                 </Radio>
-                <Radio value="ZaloPay" my="1">
+                <Radio value="Mastercard,VISA" my="1">
                   <HStack space={2} alignItems={'center'}>
                     <Image
                       alt="img"
                       source={{
-                        uri: 'https://play-lh.googleusercontent.com/gC9aHkRpVbz3QRSU-oTp8TFffwWucm7edvUCANReHEvK88MByol_5W33NGr0-t9BZhk=w480-h960-rw',
+                        uri: 'https://www.citypng.com/public/uploads/preview/mastercard-visa-cards-logos-icons-216354155388k7evd7aso.png',
                       }}
+                      resizeMode="contain"
                       style={commonStyle.iconSmall}
                     />
-                    <Text fontSize={16}>ZaloPay</Text>
+                    <Text fontSize={16}>Mastercard, VISA</Text>
                   </HStack>
                 </Radio>
                 <Radio value="Ngân hàng" my="1">
@@ -107,7 +109,7 @@ const MethodPayment = ({route}) => {
                       }}
                       style={commonStyle.iconSmall}
                     />
-                    <Text fontSize={16}>Thẻ ngân hàng</Text>
+                    <Text fontSize={16}>Thẻ ngân hàng (Credit Card)</Text>
                   </HStack>
                 </Radio>
               </VStack>

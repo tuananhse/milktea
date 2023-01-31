@@ -76,6 +76,9 @@ const App: () => Node = () => {
       white: {
         100: '#fffff',
       },
+      gray: {
+        100: '#f4f4f4',
+      },
     },
     config: {
       initialColorMode: 'light',

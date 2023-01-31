@@ -27,7 +27,7 @@ export const ALERT = '#cc4b37';
 export const GRAY_LIGHT = '#e6e6e6';
 export const GRAY_MEDIUM = '#cacaca';
 export const GRAY_DARK = '#8a8a8a';
-
+export const GRAY_LIGHT_SECOND = '#f4f4f4';
 export const TRANSPARENT = 'rgba(255, 255, 255, 0.9)';
 
 export const FACEBOOK_COLOR = '#4267B2';

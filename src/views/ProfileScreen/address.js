@@ -23,13 +23,16 @@ const Address = () => {
     navigation.navigate('NewAddress', {address: address});
   };
 
+  const onPressGoBack = () => {
+    navigation.goBack();
+  };
   return (
     <Container>
       <ScrollView>
         <VStack flex={1} p={4} space={4} style={commonStyle.flex}>
           <HStack alignItems={'center'} justifyContent={'space-between'}>
             <HStack space={2} alignItems={'flex-start'}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => onPressGoBack()}>
                 <View style={commonStyle.circleWhite}>
                   <Icon name="chevron-back-outline" size={24} />
                 </View>

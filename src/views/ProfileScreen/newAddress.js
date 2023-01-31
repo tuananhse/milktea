@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import {Button, Input, ScrollView, Text, VStack} from 'native-base';
 import React from 'react';
 import Container from '../../components/Container';
@@ -7,7 +8,7 @@ import commonStyle from '../../styles/commonStyle';
 
 const NewAddress = ({route}) => {
   const {address} = route.params;
-
+  const navigation = useNavigation();
   const getAddress = ad => {
     if (ad === COMPANY_ADDRESS) {
       return 'Công ty';
@@ -18,7 +19,10 @@ const NewAddress = ({route}) => {
     return 'Tên địa chỉ mới';
   };
 
-  const onPressSubmit = () => {};
+  const onPressSubmit = () => {
+    navigation.goBack();
+  };
+
   return (
     <Container>
       <VStack flex={1} p={4} space={4} style={commonStyle.flex}>

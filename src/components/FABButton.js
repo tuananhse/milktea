@@ -15,7 +15,7 @@ const FABButton = props => {
         rounded={'xl'}
         placement="bottom-right"
         size="sm"
-        bottom={12}
+        bottom={[12, 16, 16]}
         bg={'text.0'}
         py={2}
         label={

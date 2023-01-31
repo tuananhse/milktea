@@ -96,8 +96,8 @@ const ProductDetail = () => {
                     <VStack space={4}>
                       <Radio value="one" colorScheme="warmGray" bg={'warmGray'}>
                         <HStack
+                          w={'72'}
                           justifyContent={'space-between'}
-                          w={'80'}
                           alignItems={'center'}>
                           <Text color={'text.600'} fontSize={'lg'}>
                             Nhỏ
@@ -110,7 +110,7 @@ const ProductDetail = () => {
                       <Radio value="two" colorScheme="warmGray" bg={'warmGray'}>
                         <HStack
                           justifyContent={'space-between'}
-                          w={'80'}
+                          w={'72'}
                           alignItems={'center'}>
                           <Text color={'text.600'} fontSize={'lg'}>
                             Vừa
@@ -126,7 +126,7 @@ const ProductDetail = () => {
                         bg={'warmGray'}>
                         <HStack
                           justifyContent={'space-between'}
-                          w={'80'}
+                          w={'72'}
                           alignItems={'center'}>
                           <Text color={'text.600'} fontSize={'lg'}>
                             Lớn
@@ -159,7 +159,7 @@ const ProductDetail = () => {
                       bg={'warmGray'}>
                       <HStack
                         justifyContent={'space-between'}
-                        w={'80'}
+                        w={'72'}
                         alignItems={'center'}>
                         <Text color={'text.600'} fontSize={'lg'}>
                           Kem Phô Mai
@@ -175,7 +175,7 @@ const ProductDetail = () => {
                       bg={'warmGray'}>
                       <HStack
                         justifyContent={'space-between'}
-                        w={'80'}
+                        w={'72'}
                         alignItems={'center'}>
                         <Text color={'text.600'} fontSize={'lg'}>
                           Trân châu trắng

@@ -33,7 +33,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
   const [shipMethod, setShipMethod] = useState(DELIVERY);
-  const [hidePopup, setHidePopup] = useState(true);
+  const [hidePopup, setHidePopup] = useState(false);
   const onPressShipType = val => {
     setIsOpen(!isOpen);
   };
@@ -59,7 +59,8 @@ const HomeScreen = () => {
               Nguyễn Tuấn Anh ơi, Milk tea đi
             </Text>
             <HStack space={2} alignItems={'flex-start'}>
-              <TouchableOpacity onPress={() => navigation.navigate('Voucher')}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('MyVoucher')}>
                 <View style={commonStyle.circleWhite}>
                   <Icon name="bookmark-outline" size={24} />
                 </View>
