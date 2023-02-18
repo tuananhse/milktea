@@ -1,19 +1,16 @@
 import {
-  View,
-  VStack,
-  Text,
-  Stack,
-  Box,
   AspectRatio,
-  HStack,
-  Heading,
-  Center,
+  Box,
   FlatList,
+  Heading,
+  HStack,
+  Text,
+  VStack,
 } from 'native-base';
 import React from 'react';
-import {TouchableOpacity, Image} from 'react-native';
-import {keyExtractor} from '../../utils';
-import {IMG} from '../styles/images';
+import {Image, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {keyExtractor, toUpperCase} from '../../utils';
 const fakeData = [
   {
     id: 1,
@@ -24,13 +21,34 @@ const fakeData = [
   },
   {
     id: 2,
-    name: 'Mua một tặng 1',
+    name: 'Mua một tặng 1 áp dụng cho ngày 14/2',
     description: 'Mua một tặng 1',
     img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
     createdAt: '01/10',
   },
   {
     id: 2,
+    name: 'Thứ 3 quà tặng to đây bạn ơi',
+    description: 'Thứ 3 quà tặng to đây bạn ơi',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+    createdAt: '01/10',
+  },
+  {
+    id: 4,
+    name: 'Thứ 3 quà tặng to đây bạn ơi',
+    description: 'Thứ 3 quà tặng to đây bạn ơi',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+    createdAt: '01/10',
+  },
+  {
+    id: 5,
+    name: 'Mua một tặng 1 áp dụng cho ngày 14/2',
+    description: 'Mua một tặng 1',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+    createdAt: '01/10',
+  },
+  {
+    id: 6,
     name: 'Thứ 3 quà tặng to đây bạn ơi',
     description: 'Thứ 3 quà tặng to đây bạn ơi',
     img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
@@ -53,24 +71,22 @@ const NewsList = () => {
                 />
               </AspectRatio>
             </Box>
-            <Stack space={2} pt={2}>
-              <Stack space={2}>
-                <Heading size="xs" numberOfLines={2} color={'text.100'}>
-                  {item?.name}
-                </Heading>
-              </Stack>
+            <VStack space={1} pt={2}>
+              <Heading size="xs" numberOfLines={2} color={'text.100'}>
+                {toUpperCase(item?.name)}
+              </Heading>
 
-              <HStack
-                alignItems="center"
-                space={4}
-                justifyContent="space-between">
-                <HStack alignItems="center">
-                  <Text numberOfLines={1} color={'text.600'} fontWeight="400">
-                    {item?.createdAt}
-                  </Text>
-                </HStack>
+              <HStack alignItems="center" space={2}>
+                <Icon name="calendar" />
+                <Text
+                  numberOfLines={1}
+                  color={'text.500'}
+                  fontSize={'sm'}
+                  fontWeight="semibold">
+                  {item?.createdAt}
+                </Text>
               </HStack>
-            </Stack>
+            </VStack>
           </Box>
         </TouchableOpacity>
       </Box>
@@ -79,7 +95,7 @@ const NewsList = () => {
 
   return (
     <VStack space={2}>
-      <Text fontWeight={'semibold'} color={'text.100'} fontSize="xl">
+      <Text fontWeight={'semibold'} color={'text.100'} fontSize="md">
         Ưu đãi mới
       </Text>
       <VStack>

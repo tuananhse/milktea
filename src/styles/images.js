@@ -7,4 +7,7 @@ export const IMG = {
   history: require('../../assets/images/history.png'),
   encrypted: require('../../assets/images/encrypted.png'),
   giftbox: require('../../assets/images/giftbox.png'),
+  icReload: require('../../assets/images/icReload.png'),
+  icShip: require('../../assets/images/icShip.png'),
+  user: require('../../assets/images/user.png'),
 };

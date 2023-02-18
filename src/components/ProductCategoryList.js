@@ -1,22 +1,21 @@
 import {useNavigation} from '@react-navigation/native';
 import {
+  AspectRatio,
+  Box,
+  FlatList,
+  Heading,
+  HStack,
+  Stack,
+  Text,
   View,
   VStack,
-  Text,
-  Stack,
-  Box,
-  AspectRatio,
-  HStack,
-  Heading,
-  Center,
-  FlatList,
-  Button,
-  ScrollView,
 } from 'native-base';
 import React from 'react';
-import {TouchableOpacity, Image} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {keyExtractor} from '../../utils';
-
+import {PRIMARY, WHITE} from '../styles/colors';
+import commonStyle from '../styles/commonStyle';
 const ProductCategoryList = props => {
   const {list} = props;
   const navigation = useNavigation();
@@ -28,17 +27,19 @@ const ProductCategoryList = props => {
       <Box key={index} flex={1}>
         <TouchableOpacity onPress={() => onPressSelect()}>
           <Box m={2}>
-            <HStack space={4}>
-              <Box maxW={'40'} rounded="lg" overflow="hidden">
-                <AspectRatio w="100%" ratio={16 / 12}>
-                  <Image
-                    resizeMode="contain"
-                    source={{uri: item?.img}}
-                    alt="image"
-                  />
-                </AspectRatio>
-              </Box>
-              <VStack space={2} justifyContent={'space-between'}>
+            <HStack space={4} flexGrow={1}>
+              <VStack>
+                <Box maxW={'32'} rounded="lg" overflow="hidden">
+                  <AspectRatio w="100%" ratio={16 / 12}>
+                    <Image
+                      resizeMode="contain"
+                      source={{uri: item?.img}}
+                      alt="image"
+                    />
+                  </AspectRatio>
+                </Box>
+              </VStack>
+              <VStack flex={1} space={2}>
                 <Stack space={2}>
                   <Heading size="xs" numberOfLines={2} color={'text.100'}>
                     {item?.name}
@@ -51,13 +52,19 @@ const ProductCategoryList = props => {
                     {item?.price}
                   </Text>
                 </Stack>
-
-                <VStack mt={2}>
-                  <Button bg={'primary.100'} w={'24'}>
-                    <Text fontWeight={'bold'} color={'text.0'}>
-                      Chọn
-                    </Text>
-                  </Button>
+                <VStack alignItems={'flex-end'}>
+                  <TouchableOpacity>
+                    <View
+                      alignSelf={'baseline'}
+                      p={1}
+                      mr={2}
+                      style={[
+                        commonStyle.btnCircle,
+                        {backgroundColor: PRIMARY},
+                      ]}>
+                      <Icon name="add-outline" color={WHITE} size={24} />
+                    </View>
+                  </TouchableOpacity>
                 </VStack>
               </VStack>
             </HStack>

@@ -4,7 +4,7 @@ import {
   useNavigationContainerRef,
 } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoginScreen from '../views/LoginScreen';
 import HomeScreen from '../views/HomeScreen';
@@ -29,6 +29,11 @@ import NewAddress from '../views/ProfileScreen/newAddress';
 import RedeemPromo from '../views/Coupon/RedeemPromo';
 import AllPromo from '../views/Coupon/AllPromo';
 import MyVoucher from '../views/Voucher/myVoucher';
+import {useAuth} from './AuthProvider';
+import {useDispatch} from 'react-redux';
+import Loading from '../components/Loading';
+import Other from '../views/Ohter';
+import MyProfile from '../views/Ohter/MyProfile';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function Main() {
@@ -82,12 +87,12 @@ function Main() {
       />
 
       <Tab.Screen
-        name="Setting"
-        component={FilterCategoryScreen}
+        name="Other"
+        component={Other}
         options={{
-          tabBarLabel: 'Cài đặt',
+          tabBarLabel: 'Khác',
           tabBarIcon: ({color, size}) => (
-            <Icon name="gear" color={color} size={size} />
+            <Icon name="bars" color={color} size={size} />
           ),
         }}
       />
@@ -95,112 +100,145 @@ function Main() {
   );
 }
 export default function RouterContainer() {
+  const {state} = useAuth();
+  const dispatch = useDispatch();
+  const [initialRoute, setInitialRoute] = useState({name: 'Main'});
+  const [loading, setLoading] = useState(true);
+  const navigationRef = useNavigationContainerRef();
+
+  useEffect(() => {
+    if (state?.token === null) {
+      setInitialRoute(null);
+    }
+  }, [state]);
+
+  if (state?.loading) {
+    return <Loading />;
+  }
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Coupon">
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Verify"
-          component={VerifyCodeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ProductDetail"
-          component={ProductDetail}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Order"
-          component={Order}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="OrderConfirm"
-          component={OrderConfirm}
-          options={{headerShown: false}}
-        />
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator
+        initialRouteName={initialRoute?.name}
+        screenOptions={{
+          headerShown: false,
+        }}>
+        {state?.token == null ? (
+          <>
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{headerShown: false}}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Main"
+              component={Main}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Verify"
+              component={VerifyCodeScreen}
+              options={{headerShown: false}}
+            />
 
-        <Stack.Screen
-          name="StoreDetail"
-          component={StoreDetail}
-          options={{headerShown: false}}
-        />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ProductDetail"
+              component={ProductDetail}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Order"
+              component={Order}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="OrderConfirm"
+              component={OrderConfirm}
+              options={{headerShown: false}}
+            />
 
-        <Stack.Screen
-          name="Voucher"
-          component={Voucher}
-          options={{headerShown: false}}
-        />
+            <Stack.Screen
+              name="StoreDetail"
+              component={StoreDetail}
+              options={{headerShown: false}}
+            />
 
-        <Stack.Screen
-          name="VoucherDetail"
-          component={VoucherDetail}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="AddPromoCode"
-          component={AddPromoCode}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="PromoDetail"
-          component={PromoDetail}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="MyPolicy"
-          component={MyPolicy}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="MethodPayment"
-          component={MethodPayment}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Category"
-          component={FilterCategoryScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Address"
-          component={Address}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="NewAddress"
-          component={NewAddress}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="RedeemPromo"
-          component={RedeemPromo}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="AllPromo"
-          component={AllPromo}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="MyVoucher"
-          component={MyVoucher}
-          options={{headerShown: false}}
-        />
+            <Stack.Screen
+              name="Voucher"
+              component={Voucher}
+              options={{headerShown: false}}
+            />
+
+            <Stack.Screen
+              name="VoucherDetail"
+              component={VoucherDetail}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="AddPromoCode"
+              component={AddPromoCode}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="PromoDetail"
+              component={PromoDetail}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="MyPolicy"
+              component={MyPolicy}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="MethodPayment"
+              component={MethodPayment}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Category"
+              component={FilterCategoryScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Address"
+              component={Address}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="NewAddress"
+              component={NewAddress}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="RedeemPromo"
+              component={RedeemPromo}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="AllPromo"
+              component={AllPromo}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="MyVoucher"
+              component={MyVoucher}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="MyProfile"
+              component={MyProfile}
+              options={{headerShown: false}}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

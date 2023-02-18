@@ -5,10 +5,11 @@ import {scaleSize} from '../../styles/mixins';
 
 const productStyle = StyleSheet.create({
   btnClose: {
-    zIndex: 10,
+    zIndex: 100,
     position: 'absolute',
-    right: 0,
+    right: 1,
     padding: 30,
+    paddingTop: 40,
   },
 });
 

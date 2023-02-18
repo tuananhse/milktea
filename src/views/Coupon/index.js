@@ -1,45 +1,30 @@
-import React, {useState} from 'react';
-import Container from '../../components/Container';
-import {
-  ScrollView,
-  VStack,
-  Text,
-  HStack,
-  View,
-  Badge,
-  Heading,
-  Input,
-  Box,
-  AspectRatio,
-  Image,
-  Stack,
-  FlatList,
-  Divider,
-  Progress,
-  Center,
-  Button,
-} from 'native-base';
-import commonStyle from '../../styles/commonStyle';
-import {TouchableOpacity, useWindowDimensions} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import MemberCard from '../../components/MemberCard';
-import {
-  GRAY_DARK,
-  GRAY_LIGHT,
-  PRIMARY,
-  PRIMARY_LIGHT,
-  TEXT_CATEGORY_TITLE,
-  TEXT_LABEL,
-  TEXT_PLACEHOLDER,
-  TEXT_PRIMARY,
-  TEXT_SECONDARY,
-  WHITE,
-} from '../../styles/colors';
-import {IMG} from '../../styles/images';
 import {useNavigation} from '@react-navigation/native';
-import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import {
+  AspectRatio,
+  Badge,
+  Box,
+  Center,
+  FlatList,
+  Heading,
+  HStack,
+  Image,
+  Progress,
+  ScrollView,
+  Text,
+  View,
+  VStack,
+} from 'native-base';
+import React, {useState} from 'react';
+import {StyleSheet, TouchableOpacity, useWindowDimensions} from 'react-native';
+import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {keyExtractor} from '../../../utils';
-
+import Container from '../../components/Container';
+import MemberCard from '../../components/MemberCard';
+import {GRAY_DARK, PRIMARY, PRIMARY_LIGHT, WHITE} from '../../styles/colors';
+import commonStyle from '../../styles/commonStyle';
+import {IMG} from '../../styles/images';
+import I18n from '../../locales';
 const data = [
   {
     id: 1,
@@ -106,10 +91,10 @@ const Coupon = () => {
   };
 
   const FirstRoute = () => (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <VStack flex={1} bg={'gray.100'}>
         <Box bg={'text.0'} pb={4} rounded={'2xl'} mt={4}>
-          <View mt={-4}>
+          <View mt={-4} mx={4}>
             <MemberCard enablePoint />
           </View>
           <VStack space={2} mt={2} mx={4}>
@@ -130,6 +115,7 @@ const Coupon = () => {
                     source={IMG.coupon}
                     resizeMode="contain"
                     style={commonStyle.icMedium}
+                    alt="img"
                   />
                   <Text fontWeight={'semibold'}>Đổi ưu đãi</Text>
                 </VStack>
@@ -142,6 +128,7 @@ const Coupon = () => {
                     source={IMG.giftbox}
                     resizeMode="contain"
                     style={commonStyle.icMedium}
+                    alt="img"
                   />
                   <Text fontWeight={'semibold'}>Voucher của bạn</Text>
                 </VStack>
@@ -156,6 +143,7 @@ const Coupon = () => {
                     source={IMG.history}
                     resizeMode="contain"
                     style={commonStyle.icMedium}
+                    alt="img"
                   />
                   <Text fontWeight={'semibold'}>Lịch sử POINT</Text>
                 </VStack>
@@ -168,6 +156,7 @@ const Coupon = () => {
                     source={IMG.encrypted}
                     resizeMode="contain"
                     style={commonStyle.icMedium}
+                    alt="img"
                   />
                   <Text fontWeight={'semibold'}>Quyền lợi của bạn</Text>
                 </VStack>
@@ -205,16 +194,17 @@ const Coupon = () => {
                 </Text>
               </VStack>
               <VStack alignItems="center">
-                <Text
-                  fontSize={'md'}
-                  rounded={'lg'}
-                  px={2}
-                  numberOfLines={1}
-                  color={'green.500'}
-                  bg={'green.100'}
-                  fontWeight="400">
-                  {item?.point}
-                </Text>
+                <Box rounded={'2xl'} bg={'green.100'}>
+                  <Text
+                    fontSize={'md'}
+                    px={2}
+                    numberOfLines={1}
+                    color={'green.500'}
+                    fontWeight="400">
+                    {item?.point}
+                  </Text>
+                </Box>
+
                 <Text
                   fontSize={'sm'}
                   numberOfLines={1}
@@ -261,16 +251,17 @@ const Coupon = () => {
                   </Text>
                 </VStack>
                 <VStack alignItems={'center'}>
-                  <Text
-                    fontSize={'md'}
-                    rounded={'lg'}
-                    px={2}
-                    numberOfLines={1}
-                    color={'green.500'}
-                    bg={'green.100'}
-                    fontWeight="400">
-                    {item?.point}
-                  </Text>
+                  <Box rounded={'2xl'} bg={'green.100'}>
+                    <Text
+                      fontSize={'md'}
+                      px={2}
+                      numberOfLines={1}
+                      color={'green.500'}
+                      fontWeight="400">
+                      {item?.point}
+                    </Text>
+                  </Box>
+
                   <Text
                     fontSize={'sm'}
                     numberOfLines={1}
@@ -323,16 +314,16 @@ const Coupon = () => {
                 </Text>
               </VStack>
               <VStack alignItems="center">
-                <Text
-                  fontSize={'md'}
-                  rounded={'lg'}
-                  px={2}
-                  numberOfLines={1}
-                  color={'green.500'}
-                  bg={'green.100'}
-                  fontWeight="400">
-                  {item?.point}
-                </Text>
+                <Box rounded={'2xl'} bg={'green.100'}>
+                  <Text
+                    fontSize={'md'}
+                    px={2}
+                    numberOfLines={1}
+                    color={'green.500'}
+                    fontWeight="400">
+                    {item?.point}
+                  </Text>
+                </Box>
                 <Text
                   fontSize={'sm'}
                   numberOfLines={1}
@@ -446,18 +437,20 @@ const Coupon = () => {
       tabStyle={{width: 'auto'}}
       {...props}
       renderLabel={({route, focused}) => (
-        <Text
-          fontWeight={'semibold'}
-          style={{
-            color: focused ? PRIMARY : GRAY_DARK,
-            backgroundColor: focused ? PRIMARY_LIGHT : WHITE,
-            paddingHorizontal: 10,
-            paddingVertical: 4,
-            borderRadius: 18,
-            minWidth: 80,
-          }}>
-          {route.title}
-        </Text>
+        <Box
+          rounded={'2xl'}
+          style={[
+            styles.tabBarItem,
+            {backgroundColor: focused ? PRIMARY_LIGHT : WHITE},
+          ]}>
+          <Text
+            fontWeight={'semibold'}
+            style={{
+              color: focused ? PRIMARY : GRAY_DARK,
+            }}>
+            {route.title}
+          </Text>
+        </Box>
       )}
       indicatorStyle={{
         backgroundColor: WHITE,
@@ -525,4 +518,11 @@ const Coupon = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  tabBarItem: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    minWidth: 80,
+  },
+});
 export default Coupon;

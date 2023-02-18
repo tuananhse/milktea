@@ -1,21 +1,10 @@
 import {useNavigation} from '@react-navigation/native';
-import {
-  View,
-  VStack,
-  Text,
-  Stack,
-  Box,
-  AspectRatio,
-  HStack,
-  Heading,
-  Center,
-  FlatList,
-  Button,
-} from 'native-base';
+import {Divider, FlatList, HStack, Text, VStack} from 'native-base';
 import React from 'react';
-import {TouchableOpacity, Image} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {keyExtractor} from '../../utils';
 import commonStyle from '../styles/commonStyle';
+import {IMG} from '../styles/images';
 
 const data = [
   {
@@ -79,35 +68,44 @@ const ProductListHistory = () => {
 
   const renderItem = ({item, index}) => {
     return (
-      <HStack space={4} flex={1} m={2} justifyContent={'space-between'}>
-        <HStack space={4}>
-          <Image
-            style={commonStyle.iconCircle}
-            resizeMode="contain"
-            source={{uri: item?.img}}
-            alt="image"
-          />
-          <VStack>
-            <Text>{item.createAt}</Text>
-            <Text>{item.address}</Text>
-            <Text fontSize={'xs'}>{item.name}</Text>
-
-            <Text fontWeight={'semibold'}>{item.price}</Text>
+      <VStack key={index}>
+        <HStack space={4} flex={1} m={2} justifyContent={'space-between'}>
+          <HStack space={4} alignItems={'center'}>
+            <Image
+              style={commonStyle.iconCircle}
+              resizeMode="contain"
+              source={IMG.icShip}
+              alt="image"
+            />
+            <VStack>
+              <Text>{item.createAt}</Text>
+              <Text fontSize={'sm'} color={'text.500'}>
+                {item.address}
+              </Text>
+              <Text fontSize={'sm'} color={'text.500'}>
+                {item.name}
+              </Text>
+              <Text fontWeight={'semibold'}>{item.price}</Text>
+            </VStack>
+          </HStack>
+          <VStack alignItems={'center'} justifyContent={'center'}>
+            <TouchableOpacity onPress={() => onPressSelect()}>
+              <HStack space={1} alignItems={'center'}>
+                <Text fontWeight={'semibold'} color={'primary.100'}>
+                  Đặt lại
+                </Text>
+                <Image source={IMG.icReload} style={commonStyle.iconSmall} />
+              </HStack>
+            </TouchableOpacity>
           </VStack>
         </HStack>
-        <VStack>
-          <Button bg={'primary.100'} onPress={() => onPressSelect()}>
-            <Text fontWeight={'bold'} color={'text.0'}>
-              Đặt lại
-            </Text>
-          </Button>
-        </VStack>
-      </HStack>
+        <Divider thickness={0.5} color={'text.500'} />
+      </VStack>
     );
   };
   return (
     <VStack space={2}>
-      <Text fontWeight={'semibold'} color={'text.100'} fontSize="xl">
+      <Text fontWeight={'semibold'} color={'text.100'} fontSize={'md'}>
         Bạn có muốn đặt lại đơn
       </Text>
       <FlatList

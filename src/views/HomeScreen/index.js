@@ -16,7 +16,7 @@ import {
 import commonStyle from '../../styles/commonStyle';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import MemberCard from '../../components/MemberCard';
 import NewsList from '../../components/NewsList';
 import ProductList from '../../components/ProductList';
@@ -34,14 +34,26 @@ const HomeScreen = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [shipMethod, setShipMethod] = useState(DELIVERY);
   const [hidePopup, setHidePopup] = useState(false);
-  const onPressShipType = val => {
-    setIsOpen(!isOpen);
-  };
+  // const onPressShipType = val => {
+  //   setIsOpen(!isOpen);
+  // };
 
-  const onPressShipMethod = val => {
-    setShipMethod(val);
+  // const onPressShipMethod = val => {
+  //   setShipMethod(val);
+  //   setIsOpen(!isOpen);
+  // };
+
+  const onPressShipType = useCallback(() => {
     setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
+
+  const onPressShipMethod = useCallback(
+    val => {
+      setShipMethod(val);
+      setIsOpen(!isOpen);
+    },
+    [shipMethod],
+  );
 
   const onPressEdit = () => {
     navigation.navigate('Address');
@@ -66,17 +78,22 @@ const HomeScreen = () => {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity>
-                <VStack>
+                <VStack
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  flex={1}
+                  style={commonStyle.circleWhite}>
                   <Badge
                     colorScheme="danger"
                     rounded="full"
-                    mb={-4}
-                    mr={-4}
-                    zIndex={1}
+                    top={0}
+                    right={-10}
+                    zIndex={10}
+                    position={'absolute'}
                     variant="solid"
                     alignSelf="flex-end"
                     _text={{
-                      fontSize: 12,
+                      color: 'text.0',
                     }}>
                     2
                   </Badge>
@@ -85,7 +102,7 @@ const HomeScreen = () => {
               </TouchableOpacity>
             </HStack>
           </HStack>
-          <VStack space={2}>
+          <VStack space={3}>
             <MemberCard />
             <DeliveryGroup />
             <Slider />

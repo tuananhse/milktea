@@ -1,13 +1,100 @@
 import type {Node} from 'react';
 import React from 'react';
-
 import {extendTheme, NativeBaseProvider} from 'native-base';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import RouterContainer from './src/routes';
 import {getFontSize} from './utils';
+import {store} from './src/redux/store/store';
+import {Provider} from 'react-redux';
+import {AuthProvider} from './src/routes/AuthProvider';
+import I18n from './src/locales';
+
 const App: () => Node = () => {
   const theme = extendTheme({
     components: {
+      Input: {
+        baseStyle: {
+          color: 'text.100',
+          borderColor: 'text.50',
+          _focus: {
+            color: 'text.100',
+            borderColor: 'text.50',
+          },
+        },
+        sizes: {
+          md: {
+            py: 4,
+            px: 5,
+            bg: 'text.0',
+            fontSize: 16,
+          },
+          sm: {
+            py: 3,
+            px: 5,
+            bg: 'text.0',
+            fontSize: 14,
+          },
+        },
+      },
+      Checkbox: {
+        baseStyle: {
+          color: 'text.100',
+          borderColor: 'primary.100',
+          backgroundColor: 'primary.100',
+          _focus: {
+            color: 'primary.100',
+            borderColor: 'primary.100',
+          },
+          _checked: {
+            color: 'primary.100',
+            borderColor: 'primary.100',
+          },
+        },
+        sizes: {
+          md: {
+            py: 0,
+            px: 0,
+            bg: 'text.0',
+            fontSize: 16,
+          },
+          sm: {
+            py: 0,
+            px: 0,
+            bg: 'text.0',
+            fontSize: 14,
+          },
+        },
+      },
+      Radio: {
+        baseStyle: {
+          color: 'text.100',
+          borderColor: 'primary.100',
+          _focus: {
+            color: 'primary.100',
+            borderColor: 'primary.100',
+          },
+          _checked: {
+            bg: 'primary.100',
+            borderColor: 'primary.100',
+            backgroundColor: 'primary.100',
+            color: 'primary.100',
+          },
+        },
+        sizes: {
+          md: {
+            py: 1,
+            px: 1,
+            bg: 'text.0',
+            fontSize: 16,
+          },
+          sm: {
+            py: 1,
+            px: 1,
+            bg: 'text.0',
+            fontSize: 14,
+          },
+        },
+      },
       FormControlLabel: {
         baseStyle: {
           _text: {
@@ -55,6 +142,8 @@ const App: () => Node = () => {
         300: '#ffffff',
         400: '#ffffff',
         500: '#e6e6e6',
+        600: '#ffffff',
+
         0: '#ffffff',
       },
       red: {
@@ -84,12 +173,18 @@ const App: () => Node = () => {
       initialColorMode: 'light',
     },
   });
+  I18n.locale = 'vi';
+
   return (
-    <NativeBaseProvider theme={theme}>
-      <SafeAreaProvider>
-        <RouterContainer />
-      </SafeAreaProvider>
-    </NativeBaseProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <NativeBaseProvider theme={theme}>
+          <SafeAreaProvider>
+            <RouterContainer />
+          </SafeAreaProvider>
+        </NativeBaseProvider>
+      </AuthProvider>
+    </Provider>
   );
 };
 

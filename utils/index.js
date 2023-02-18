@@ -255,6 +255,13 @@ export const renderTwoCharacter = text => {
   return newText;
 };
 
+export const toUpperCase = text => {
+  if (!text) {
+    return text;
+  }
+  return text.toUpperCase();
+};
+
 export default {
   winSize: Dimensions.get('window'),
   // SCALE SIZE

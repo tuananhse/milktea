@@ -1,30 +1,32 @@
+import {useNavigation} from '@react-navigation/native';
 import {
-  View,
-  VStack,
-  Text,
-  Box,
   AspectRatio,
+  Box,
+  Button,
+  Checkbox,
   Heading,
+  HStack,
+  Input,
   Radio,
   ScrollView,
-  HStack,
-  Flex,
-  Checkbox,
-  Input,
-  Button,
+  Text,
+  View,
+  VStack,
 } from 'native-base';
-import {Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import Container from '../../components/Container';
+import {Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Container from '../../components/Container';
+import ContentViewMore from '../../components/ContentViewMore';
+import {GRAY_LIGHT, PRIMARY, PRIMARY_LIGHT} from '../../styles/colors';
 import commonStyle from '../../styles/commonStyle';
-import {useNavigation} from '@react-navigation/native';
 import productStyle from './styles';
-import {GRAY_DARK, GRAY_LIGHT} from '../../styles/colors';
 const ProductDetail = () => {
   const [viewMore, setViewMore] = useState(false);
   const [value, setValue] = useState('one');
   const [groupValues, setGroupValues] = useState([]);
+
+  const [readMore, setReadMore] = useState(false);
   const navigation = useNavigation();
   const onPressViewMore = () => {
     setViewMore(!viewMore);
@@ -37,6 +39,10 @@ const ProductDetail = () => {
   const onPressOrder = () => {
     navigation.navigate('Order');
   };
+
+  const onPressMore = () => {};
+  const onPressLess = () => {};
+
   return (
     <Container edges="bottom">
       <VStack flex={1} bg={GRAY_LIGHT}>
@@ -45,13 +51,12 @@ const ProductDetail = () => {
             <VStack>
               <Box w={'100%'} bg={'text.0'}>
                 <View style={productStyle.btnClose}>
-                  <TouchableOpacity
-                    onPress={() => onPressClose()}
-                    style={commonStyle.iconCircle}>
-                    <Icon name="close" size={32} />
-                  </TouchableOpacity>
+                  <Box rounded={'2xl'}>
+                    <TouchableOpacity onPress={() => onPressClose()}>
+                      <Icon name="close" size={24} />
+                    </TouchableOpacity>
+                  </Box>
                 </View>
-
                 <AspectRatio w="100%" ratio={16 / 12}>
                   <Image
                     alt="image"
@@ -63,28 +68,24 @@ const ProductDetail = () => {
                 </AspectRatio>
               </Box>
               <VStack space={2} p={4} bg={'text.0'}>
-                <Heading color={'text.100'} size={'lg'}>
+                <Heading color={'text.100'} size={'md'}>
                   Trà sữa chân châu
                 </Heading>
-                <Text color={'text.500'} fontSize={'xl'}>
+                <Text color={'text.500'} fontSize={'md'}>
                   35.000đ
                 </Text>
-                <Text color={'text.100'} fontSize={'lg'} numberOfLines={3}>
+
+                <ContentViewMore>
                   Thức uống giúp tỉnh táo tức thì để bắt đầu ngày mới thật hứng
                   khởi, Không đắng như cà phê truyền thống...
-                  <TouchableOpacity onPress={() => onPressViewMore()}>
-                    <Text fontSize={'lg'} color={'primary.100'} pl={2}>
-                      Xem thêm
-                    </Text>
-                  </TouchableOpacity>
-                </Text>
+                </ContentViewMore>
               </VStack>
               <VStack space={2} p={4} bg={'text.0'} mt={2}>
-                <Heading color={'text.100'} size={'lg'}>
+                <Heading color={'text.100'} size={'md'}>
                   Size
                 </Heading>
                 <Text color={'text.500'} fontSize={'md'}>
-                  Chọn loại size
+                  Chọn 1 loại size
                 </Text>
                 <VStack>
                   <Radio.Group
@@ -93,45 +94,33 @@ const ProductDetail = () => {
                     onChange={nextValue => {
                       setValue(nextValue);
                     }}>
-                    <VStack space={4}>
-                      <Radio value="one" colorScheme="warmGray" bg={'warmGray'}>
-                        <HStack
-                          w={'72'}
-                          justifyContent={'space-between'}
-                          alignItems={'center'}>
-                          <Text color={'text.600'} fontSize={'lg'}>
+                    <VStack space={4} w={'full'}>
+                      <Radio size="sm" value="one">
+                        <HStack flex={1} justifyContent={'space-between'}>
+                          <Text color={'text.600'} fontSize={'md'}>
                             Nhỏ
                           </Text>
-                          <Text color={'text.600'} fontSize={'lg'}>
+                          <Text color={'text.600'} fontSize={'md'}>
                             35.000đ
                           </Text>
                         </HStack>
                       </Radio>
-                      <Radio value="two" colorScheme="warmGray" bg={'warmGray'}>
-                        <HStack
-                          justifyContent={'space-between'}
-                          w={'72'}
-                          alignItems={'center'}>
-                          <Text color={'text.600'} fontSize={'lg'}>
+                      <Radio size="sm" value="two">
+                        <HStack justifyContent={'space-between'} flex={1}>
+                          <Text color={'text.600'} fontSize={'md'}>
                             Vừa
                           </Text>
-                          <Text color={'text.600'} fontSize={'lg'}>
+                          <Text color={'text.600'} fontSize={'md'}>
                             39.000đ
                           </Text>
                         </HStack>
                       </Radio>
-                      <Radio
-                        value="three"
-                        colorScheme="warmGray"
-                        bg={'warmGray'}>
-                        <HStack
-                          justifyContent={'space-between'}
-                          w={'72'}
-                          alignItems={'center'}>
-                          <Text color={'text.600'} fontSize={'lg'}>
+                      <Radio size="sm" value="three">
+                        <HStack flex={1} justifyContent={'space-between'}>
+                          <Text color={'text.600'} fontSize={'md'}>
                             Lớn
                           </Text>
-                          <Text color={'text.600'} fontSize={'lg'}>
+                          <Text color={'text.600'} fontSize={'md'}>
                             45.000đ
                           </Text>
                         </HStack>
@@ -141,7 +130,7 @@ const ProductDetail = () => {
                 </VStack>
               </VStack>
               <VStack space={2} p={4} mt={2} bg={'text.0'}>
-                <Heading color={'text.100'} size={'lg'}>
+                <Heading color={'text.100'} size={'md'}>
                   Topping
                 </Heading>
                 <Text color={'text.500'} fontSize={'md'}>
@@ -152,44 +141,33 @@ const ProductDetail = () => {
                     onChange={setGroupValues}
                     value={groupValues}
                     accessibilityLabel="choose numbers">
-                    <Checkbox
-                      value="one"
-                      my={2}
-                      colorScheme="warmGray"
-                      bg={'warmGray'}>
-                      <HStack
-                        justifyContent={'space-between'}
-                        w={'72'}
-                        alignItems={'center'}>
-                        <Text color={'text.600'} fontSize={'lg'}>
-                          Kem Phô Mai
-                        </Text>
-                        <Text color={'text.600'} fontSize={'lg'}>
-                          10.000đ
-                        </Text>
-                      </HStack>
-                    </Checkbox>
-                    <Checkbox
-                      value="two"
-                      colorScheme="warmGray"
-                      bg={'warmGray'}>
-                      <HStack
-                        justifyContent={'space-between'}
-                        w={'72'}
-                        alignItems={'center'}>
-                        <Text color={'text.600'} fontSize={'lg'}>
-                          Trân châu trắng
-                        </Text>
-                        <Text color={'text.600'} fontSize={'lg'}>
-                          10.000đ
-                        </Text>
-                      </HStack>
-                    </Checkbox>
+                    <VStack space={4} w={'full'}>
+                      <Checkbox value="one" my={2} w={'full'}>
+                        <HStack justifyContent={'space-between'} flex={1}>
+                          <Text color={'text.600'} fontSize={'md'}>
+                            Kem Phô Mai
+                          </Text>
+                          <Text color={'text.600'} fontSize={'md'}>
+                            10.000đ
+                          </Text>
+                        </HStack>
+                      </Checkbox>
+                      <Checkbox value="two">
+                        <HStack justifyContent={'space-between'} flex={1}>
+                          <Text color={'text.600'} fontSize={'md'}>
+                            Trân châu trắng
+                          </Text>
+                          <Text color={'text.600'} fontSize={'md'}>
+                            10.000đ
+                          </Text>
+                        </HStack>
+                      </Checkbox>
+                    </VStack>
                   </Checkbox.Group>
                 </VStack>
               </VStack>
               <VStack space={2} p={4} mt={2} bg={'text.0'}>
-                <Heading color={'text.100'} size={'lg'}>
+                <Heading color={'text.100'} size={'md'}>
                   Yêu cầu khác
                 </Heading>
                 <Text color={'text.500'} fontSize={'md'}>
@@ -198,7 +176,7 @@ const ProductDetail = () => {
                 <VStack>
                   <Input
                     fontSize={'sm'}
-                    borderColor={'text.500'}
+                    borderColor={'text.50'}
                     placeholder="Thêm ghi chú"
                   />
                 </VStack>
@@ -217,14 +195,28 @@ const ProductDetail = () => {
           <HStack>
             <View flex={1} alignItems={'flex-start'} justifyContent={'center'}>
               <HStack space={6} alignItems={'center'}>
-                <TouchableOpacity style={commonStyle.btnCircle}>
-                  <Icon name="remove-outline" size={24} />
+                <TouchableOpacity onPress={() => onPressLess()}>
+                  <View
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    style={[
+                      commonStyle.btnCircle,
+                      {backgroundColor: PRIMARY_LIGHT},
+                    ]}>
+                    <Icon name="remove-outline" color={PRIMARY} size={24} />
+                  </View>
                 </TouchableOpacity>
                 <Text color={'text.100'} fontWeight={'semibold'}>
-                  1
+                  {1}
                 </Text>
-                <TouchableOpacity style={commonStyle.btnCircle}>
-                  <Icon name="add-outline" size={24} />
+                <TouchableOpacity onPress={() => onPressMore()}>
+                  <View
+                    style={[
+                      commonStyle.btnCircle,
+                      {backgroundColor: PRIMARY_LIGHT},
+                    ]}>
+                    <Icon name="add-outline" color={PRIMARY} size={24} />
+                  </View>
                 </TouchableOpacity>
               </HStack>
             </View>

@@ -15,7 +15,7 @@ import {h_scale} from '../styles/mixins';
 const Container = ({
   children,
   touchableWithoutFeedback = false,
-  bg,
+  bg = WHITE,
   edges = 'top',
   barStyle = 'dark-content',
   padding = false,
@@ -24,7 +24,7 @@ const Container = ({
     return (
       <SafeAreaView
         edges={[edges]}
-        style={[commonStyle.containerSafeAreaView, {backgroundColor: WHITE}]}>
+        style={[commonStyle.containerSafeAreaView, {backgroundColor: bg}]}>
         <StatusBar barStyle={'dark-content'} backgroundColor={WHITE} />
         <TouchableWithoutFeedback
           onPress={() => {
@@ -51,6 +51,7 @@ const Container = ({
       style={[
         commonStyle.containerSafeAreaView,
         padding && commonStyle.padding,
+        {backgroundColor: bg},
       ]}>
       {children}
     </SafeAreaView>

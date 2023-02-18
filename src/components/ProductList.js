@@ -1,19 +1,17 @@
 import {useNavigation} from '@react-navigation/native';
 import {
-  View,
-  VStack,
-  Text,
-  Stack,
-  Box,
   AspectRatio,
-  HStack,
-  Heading,
-  Center,
-  FlatList,
+  Box,
   Button,
+  FlatList,
+  Heading,
+  HStack,
+  Stack,
+  Text,
+  VStack,
 } from 'native-base';
 import React from 'react';
-import {TouchableOpacity, Image} from 'react-native';
+import {Image} from 'react-native';
 import {keyExtractor} from '../../utils';
 
 const data = [
@@ -73,30 +71,27 @@ const ProductList = props => {
               />
             </AspectRatio>
           </Box>
-          <Stack space={2} pt={2}>
+          <Stack space={1} pt={2}>
             <Stack space={2}>
               <Heading size="xs" numberOfLines={2} color={'text.100'}>
                 {item?.name}
               </Heading>
             </Stack>
 
-            <HStack
-              alignItems="center"
-              space={4}
-              justifyContent="space-between">
+            <HStack alignItems="center" justifyContent="space-between">
               <HStack alignItems="center">
-                <Text
-                  fontSize={'md'}
-                  numberOfLines={1}
-                  color={'text.600'}
-                  fontWeight="400">
+                <Text fontSize={'sm'} numberOfLines={1} color={'text.500'}>
                   {item?.price}
                 </Text>
               </HStack>
             </HStack>
             <VStack mt={2}>
-              <Button bg={'primary.100'} onPress={() => onPressSelect()}>
-                <Text fontWeight={'bold'} color={'text.0'}>
+              <Button
+                size={'xs'}
+                padding={'1'}
+                bg={'primary.100'}
+                onPress={() => onPressSelect()}>
+                <Text fontWeight={'semibold'} color={'text.0'}>
                   Chọn
                 </Text>
               </Button>
@@ -108,7 +103,7 @@ const ProductList = props => {
   };
   return (
     <VStack space={2}>
-      <Text fontWeight={'semibold'} color={'text.100'} fontSize="xl">
+      <Text fontWeight={'semibold'} color={'text.100'} fontSize="md">
         Sản phẩm HOT
       </Text>
       <FlatList
@@ -117,6 +112,7 @@ const ProductList = props => {
         data={data}
         keyExtractor={keyExtractor}
         horizontal
+        showsHorizontalScrollIndicator={false}
       />
     </VStack>
   );

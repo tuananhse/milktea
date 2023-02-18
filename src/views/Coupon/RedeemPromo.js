@@ -1,28 +1,20 @@
+import {useNavigation} from '@react-navigation/native';
 import {
+  Box,
+  Fab,
+  HStack,
+  Image,
+  ScrollView,
+  Text,
   View,
   VStack,
-  Text,
-  Box,
-  AspectRatio,
-  Heading,
-  Radio,
-  ScrollView,
-  HStack,
-  Flex,
-  Checkbox,
-  Input,
-  Button,
-  Image,
-  Fab,
 } from 'native-base';
 import React from 'react';
-import Header from '../../components/Header';
-import commonStyle from '../../styles/commonStyle';
+import {Alert, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {TouchableOpacity, Alert} from 'react-native';
-import {IMG} from '../../styles/images';
-import {useNavigation} from '@react-navigation/native';
 import Container from '../../components/Container';
+import commonStyle from '../../styles/commonStyle';
+import {IMG} from '../../styles/images';
 
 const RedeemPromo = ({route}) => {
   const {item} = route.params;
@@ -49,7 +41,7 @@ const RedeemPromo = ({route}) => {
   };
   return (
     <Container>
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+      <ScrollView contentContainerStyle={commonStyle.scrollContainer}>
         <View flex={1}>
           <View justifyContent={'flex-start'} alignItems={'flex-start'}>
             <Image
@@ -58,6 +50,7 @@ const RedeemPromo = ({route}) => {
                 uri: item?.img,
               }}
               resizeMode="cover"
+              alt="img"
             />
             <View style={commonStyle.icClose}>
               <TouchableOpacity
@@ -71,13 +64,17 @@ const RedeemPromo = ({route}) => {
                 shadow={1}
                 position={'absolute'}
                 bottom={-32}
-                w={'96'}
+                w={[80, 96]}
                 bg={'text.0'}
                 p={4}
                 rounded={'2xl'}>
                 <HStack alignItems={'center'} space={4}>
                   <View flex={1} alignItems={'center'}>
-                    <Image source={IMG.coupon} style={commonStyle.icPromo} />
+                    <Image
+                      source={IMG.coupon}
+                      style={commonStyle.icPromo}
+                      alt={'img'}
+                    />
                   </View>
                   <VStack flex={3} space={2}>
                     <Text>{item.description}</Text>
@@ -106,7 +103,7 @@ const RedeemPromo = ({route}) => {
               <Text>{item.description}</Text>
             </VStack>
           </VStack>
-          <Box flex={1}>
+          <Box flex={1} alignItems={'center'} justifyContent={'center'}>
             <Fab
               shadow={1}
               rounded={'xl'}
@@ -114,13 +111,16 @@ const RedeemPromo = ({route}) => {
               size="sm"
               bottom={[12, 16, 16]}
               bg={'primary.100'}
-              w={'96'}
               py={2}
               label={
-                <View flex={1}>
+                <View
+                  flex={1}
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  w={'full'}>
                   <HStack
                     flex={1}
-                    w={'96'}
+                    w={[80, 96]}
                     px={4}
                     justifyContent={'space-between'}>
                     <VStack>

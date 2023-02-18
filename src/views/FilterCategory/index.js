@@ -10,6 +10,11 @@ import {
   Menu,
   ScrollView,
   Input,
+  Actionsheet,
+  useDisclose,
+  Flex,
+  Image,
+  AspectRatio,
 } from 'native-base';
 import React, {useCallback, useState} from 'react';
 import Container from '../../components/Container';
@@ -58,11 +63,65 @@ const list = [
   },
 ];
 
+const listCategory = [
+  {
+    id: 1,
+    name: 'Cà phê',
+    key: 'cafe',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+  {
+    id: 2,
+    name: 'CloudFree',
+    key: 'CloudFree',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+  {
+    id: 3,
+    name: 'CloudTea',
+    key: 'CloudTea',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+  {
+    id: 4,
+    name: 'Hi-Tea',
+    key: 'HiTea',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+  {
+    id: 5,
+    name: 'Trà trái cây - Trà sữa',
+    key: 'tea',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+  {
+    id: 6,
+    name: 'Thưởng thức tại nhà',
+    key: 'house',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+  {
+    id: 7,
+    name: 'Bánh - Snack',
+    key: 'snack',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+  {
+    id: 8,
+    name: 'Thức uống khác',
+    key: 'other',
+    img: 'https://cdn.tgdd.vn/Files/2019/11/25/1221945/tra-sua-khong-don-gian-chi-co-tra-va-sua-ma-con-cuc-nhieu-thanh-phan-doc-hai-khac-201911250918409829.jpg',
+  },
+];
+
 const FilterCategory = () => {
   const [selected, setSelected] = useState(null);
   const [searchEnable, setSearchEnable] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [listProduct, setListProduct] = useState(list);
+
+  const {isOpen, onOpen, onClose} = useDisclose();
+
   const onPressSearch = () => {
     setSearchEnable(!searchEnable);
   };
@@ -88,55 +147,38 @@ const FilterCategory = () => {
     );
     setListProduct(newList);
   };
+
+  const onPressSelectCategory = () => {
+    onClose();
+  };
+
+  const RenderContent = () => {
+    return (
+      <VStack>
+        <Heading pl={4} size="md" numberOfLines={2} color={'text.100'}>
+          Trà sữa
+        </Heading>
+        <ProductCategoryList list={list} />
+      </VStack>
+    );
+  };
   return (
     <Container>
       {searchEnable ? (
         <HStack alignItems={'center'} justifyContent={'space-between'} p={4}>
           <VStack>
             <Box alignItems="flex-start">
-              <Menu
-                shadow={2}
-                w="100%"
-                trigger={triggerProps => {
-                  return (
-                    <Pressable
-                      accessibilityLabel="More options menu"
-                      {...triggerProps}>
-                      <HStack alignItems={'center'}>
-                        <Heading color={'text.100'}>
-                          {selected ? selected : 'Danh mục'}
-                        </Heading>
-                        <Icon name="chevron-down-outline" size={24} />
-                      </HStack>
-                    </Pressable>
-                  );
-                }}>
-                <Menu.Item value={1}>
-                  <Text fontWeight={'semibold'} fontSize={'lg'}>
-                    Cà phê
-                  </Text>
-                </Menu.Item>
-                <Menu.Item value={2}>
-                  <Text fontWeight={'semibold'} fontSize={'lg'}>
-                    Đặt gần đây
-                  </Text>
-                </Menu.Item>
-                <Menu.Item value={3}>
-                  <Text fontWeight={'semibold'} fontSize={'lg'}>
-                    Trà sữa chân châu
-                  </Text>
-                </Menu.Item>
-                <Menu.Item value={4}>
-                  <Text fontWeight={'semibold'} fontSize={'lg'}>
-                    Trà đào
-                  </Text>
-                </Menu.Item>
-                <Menu.Item value={5}>
-                  <Text fontWeight={'semibold'} fontSize={'lg'}>
-                    Bánh-Snack
-                  </Text>
-                </Menu.Item>
-              </Menu>
+              <TouchableOpacity onPress={onOpen}>
+                <HStack alignItems={'center'}>
+                  <Heading
+                    size={'md'}
+                    fontWeight={'semibold'}
+                    color={'text.100'}>
+                    {'Danh mục'}
+                  </Heading>
+                  <Icon name="chevron-down-outline" size={24} />
+                </HStack>
+              </TouchableOpacity>
             </Box>
           </VStack>
 
@@ -191,15 +233,43 @@ const FilterCategory = () => {
         ) : (
           <VStack flex={1}>
             <CategoryList />
-            <Heading pl={4} size="md" numberOfLines={2} color={'text.100'}>
-              Trà sữa
-            </Heading>
-            <ProductCategoryList list={list} />
+            <RenderContent />
           </VStack>
         )}
+        <Actionsheet isOpen={isOpen} onClose={onClose}>
+          <Actionsheet.Content>
+            <Heading size={'md'} fontWeight={'semibold'} color={'text.100'}>
+              {'Danh mục'}
+            </Heading>
+            <HStack flexWrap={'wrap'} w={'full'} flexGrow={1}>
+              {listCategory.map(item => {
+                return (
+                  <VStack w={'1/3'} py={2}>
+                    <TouchableOpacity
+                      onPress={() => onPressSelectCategory(item)}>
+                      <VStack alignItems={'center'}>
+                        <Image
+                          resizeMode="contain"
+                          source={{uri: item?.img}}
+                          alt="image"
+                          style={commonStyle.circleMediumWhite}
+                        />
+
+                        <Text mt={2} numberOfLines={2} textAlign={'center'}>
+                          {item.name}
+                        </Text>
+                      </VStack>
+                    </TouchableOpacity>
+                  </VStack>
+                );
+              })}
+            </HStack>
+          </Actionsheet.Content>
+        </Actionsheet>
       </ScrollView>
     </Container>
   );
 };
 
 export default FilterCategory;
+VStack;

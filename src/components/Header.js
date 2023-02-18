@@ -14,10 +14,13 @@ const Header = props => {
   };
 
   return (
-    <HStack>
-      <View position={'absolute'} left={0} zIndex={1}>
+    <HStack h={10} alignItems={'center'}>
+      <View position={'absolute'} left={4} zIndex={1}>
         <TouchableOpacity onPress={() => onPressGoBack()}>
-          <View style={commonStyle.icMedium}>
+          <View
+            alignItems={'center'}
+            justifyContent={'center'}
+            style={commonStyle.icMedium}>
             <Icon name="chevron-back-outline" size={24} />
           </View>
         </TouchableOpacity>

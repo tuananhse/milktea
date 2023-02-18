@@ -113,16 +113,17 @@ const AllPromo = ({route}) => {
                   </Text>
                 </VStack>
                 <VStack alignItems={'center'}>
-                  <Text
-                    fontSize={'md'}
-                    rounded={'lg'}
-                    px={2}
-                    numberOfLines={1}
-                    color={'green.500'}
-                    bg={'green.100'}
-                    fontWeight="400">
-                    {item?.point}
-                  </Text>
+                  <Box rounded={'2xl'} bg={'green.100'}>
+                    <Text
+                      fontSize={'md'}
+                      px={2}
+                      numberOfLines={1}
+                      color={'green.500'}
+                      fontWeight="400">
+                      {item?.point}
+                    </Text>
+                  </Box>
+
                   <Text
                     fontSize={'sm'}
                     numberOfLines={1}

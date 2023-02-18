@@ -1,40 +1,94 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 import {
-  View,
-  Text,
-  VStack,
-  Input,
   Button,
   Divider,
-  ZStack,
-  ScrollView,
-  Factory,
   HStack,
+  Input,
+  ScrollView,
+  Text,
+  useToast,
+  View,
+  VStack,
 } from 'native-base';
 import React, {useState} from 'react';
-import {Image, Platform, TouchableOpacity} from 'react-native';
-import CButton from '../../components/CButton';
-import CInput from '../../components/CInput';
+import {Image, Keyboard, Platform, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch} from 'react-redux';
+import {checkConnectivity} from '../../../utils';
 import Container from '../../components/Container';
-import {BLACK, FACEBOOK_COLOR, PRIMARY, WHITE} from '../../styles/colors';
+import Loading from '../../components/Loading';
+import {APP_NAME} from '../../constants';
+import {fetchLoginAsync} from '../../store/userSlide';
+import {FACEBOOK_COLOR, PRIMARY, WHITE} from '../../styles/colors';
 import commonStyle from '../../styles/commonStyle';
 import {IMG} from '../../styles/images';
 import loginStyle from './styles';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
-import {APP_NAME} from '../../constants';
 
 const LoginScreen = () => {
-  const [phone, setPhone] = useState('');
-  const navigation = useNavigation();
+  const [phone, setPhone] = useState('kyubjn94@gmail.com');
 
-  const onPressLogin = () => {
-    navigation.navigate('Main');
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
+  const [password, setPassword] = useState('.Kyubjn94');
+  const dispatch = useDispatch();
+  const toast = useToast();
+
+  const onPressLogin = async () => {
+    Keyboard.dismiss();
+    let isConnected = await checkConnectivity();
+
+    if (!isConnected) {
+      toast.show({description: 'Không có kết nối, vui lòng thử lại!'});
+      return;
+    }
+
+    if (!phone) {
+      toast.show({description: 'Tên đăng nhập không được để trống!'});
+      return;
+    }
+    if (!password) {
+      toast.show({description: 'Mật khẩu không được để trống!'});
+      return;
+    }
+    setLoading(true);
+    let bodyFormData = new FormData();
+    bodyFormData.append('username', phone);
+    bodyFormData.append('password', password);
+    dispatch(fetchLoginAsync(bodyFormData))
+      .then(({payload}) => {
+        setAuthToken(payload?.data?.token);
+        setToken(payload?.data?.token);
+      })
+      .catch(() => {
+        toast.show({
+          description: 'Đăng nhập thất bại, vui lòng thử lại!',
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
+  const setAuthToken = token => {
+    setToken(token);
+    axios.defaults.headers.common['Authorization'] = '';
+    delete axios.defaults.headers.common['Authorization'];
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
+  };
+
+  const setToken = async token => {
+    await AsyncStorage.setItem('@token', token);
+  };
+
   const onPressClose = () => {};
   const onPressLoginApple = () => {};
 
   const onPressLoginFacebook = () => {};
   const onPressLoginGoogle = () => {};
+
   return (
     <Container edges={'bottom'} touchableWithoutFeedback>
       <ScrollView>
@@ -70,18 +124,11 @@ const LoginScreen = () => {
                 onChangeText={val => {
                   setPhone(val);
                 }}
-                fontSize={16}
                 keyboardType="number-pad"
                 placeholder="Nhập số điện thoại"
-                placeholderTextColor={'text.500'}
-                _focus={{borderColor: 'white'}}
-                selectionColor={'text.50'}
-                borderColor={'text.50'}
-                color={'text.100'}
                 autoCapitalize="none"
                 borderRadius={10}
                 value={phone}
-                size={'2xl'}
                 InputLeftElement={
                   <View pl={4}>
                     <Icon size={20} name="call-outline" />
@@ -90,7 +137,6 @@ const LoginScreen = () => {
               />
               <VStack space={4} mt={4}>
                 <Button
-                  size={'lg'}
                   borderRadius={10}
                   bg={PRIMARY}
                   onPress={() => onPressLogin()}>
@@ -107,7 +153,6 @@ const LoginScreen = () => {
                 </HStack>
                 {Platform.OS === 'ios' && (
                   <Button
-                    size={'lg'}
                     borderRadius={10}
                     bg={'text.100'}
                     leftIcon={
@@ -121,7 +166,6 @@ const LoginScreen = () => {
                 )}
 
                 <Button
-                  size={'lg'}
                   borderRadius={10}
                   bg={FACEBOOK_COLOR}
                   leftIcon={
@@ -138,7 +182,6 @@ const LoginScreen = () => {
                   </Text>
                 </Button>
                 <Button
-                  size={'lg'}
                   borderRadius={10}
                   bg={WHITE}
                   leftIcon={
@@ -162,6 +205,7 @@ const LoginScreen = () => {
             </View>
           </VStack>
         </VStack>
+        {loading && <Loading />}
       </ScrollView>
     </Container>
   );
