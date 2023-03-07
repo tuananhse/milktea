@@ -1,18 +1,18 @@
 import {Button, Text} from 'native-base';
-import React from 'react';
+import React, {memo} from 'react';
 
-const CButton = ({children}, props) => {
-  const {onPress} = props;
+const CButton = props => {
+  const {onPress, children} = props;
   return (
     <Button
       {...props}
       onPress={onPress}
       bg={'primary.100'}
       color={'text.100'}
-      colorScheme="default">
+      colorScheme="amber">
       <Text color={'text.0'}>{children}</Text>
     </Button>
   );
 };
 
-export default CButton;
+export default memo(CButton);

@@ -1,5 +1,5 @@
 import {AlertDialog, Button, Text} from 'native-base';
-import React from 'react';
+import React, {memo} from 'react';
 const CDialog = props => {
   const {onClose, onSubmit, title, content, confirmTitle} = props;
   const cancelRef = React.useRef(null);
@@ -39,4 +39,4 @@ const CDialog = props => {
     </AlertDialog>
   );
 };
-export default CDialog;
+export default memo(CDialog);

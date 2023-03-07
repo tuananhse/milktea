@@ -1,5 +1,5 @@
 import {Factory, Input} from 'native-base';
-import React from 'react';
+import React, {memo} from 'react';
 import {getFontSize} from '../../utils';
 
 const CInput = props => {
@@ -37,4 +37,4 @@ const CInput = props => {
   );
 };
 
-export default CInput;
+export default memo(CInput);

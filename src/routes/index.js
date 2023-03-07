@@ -32,8 +32,10 @@ import MyVoucher from '../views/Voucher/myVoucher';
 import {useAuth} from './AuthProvider';
 import {useDispatch} from 'react-redux';
 import Loading from '../components/Loading';
-import Other from '../views/Ohter';
-import MyProfile from '../views/Ohter/MyProfile';
+import Other from '../views/Other';
+import MyProfile from '../views/Other/MyProfile';
+import CouponHistory from '../views/Coupon/history';
+import PointHistory from '../views/Coupon/history';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function Main() {
@@ -235,6 +237,11 @@ export default function RouterContainer() {
             <Stack.Screen
               name="MyProfile"
               component={MyProfile}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="PointHistory"
+              component={PointHistory}
               options={{headerShown: false}}
             />
           </>

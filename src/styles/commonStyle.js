@@ -167,4 +167,7 @@ export default {
   scrollContainer: {
     flexGrow: 1,
   },
+  tabBarWidth: {
+    width: 'auto',
+  },
 };
